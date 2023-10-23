@@ -1,0 +1,593 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+
+}
+#tabswitch{
+    height: 300px;
+    width: 700px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 7;
+    padding: 10px;
+    border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+    color: black;
+
+}
+#tabtopic{
+    padding: 10px;
+    border-bottom: 1px solid grey;
+    color: gray;
+   
+}
+#tabswitch p{
+    color: red;
+    padding: 10px;
+    position: absolute;
+    top: 20%;
+}
+#warning{
+   color: red; 
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+#tabclose{
+    width: fit-content;
+   padding: 10px;
+   border-radius: 7px;
+   border: none;
+}
+#tabbutton{
+    display: flex;
+    justify-content: flex-end;
+}
+#choices{
+    display: flex;
+    flex-direction: column;
+}
+#instructions{
+    height:300px;
+    width: 700px;
+    font-size: 1vw;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 4;
+    padding: 10px;
+    border-radius: 1rem;
+    font-family: sans-serif;
+    font-weight: bold;
+ 
+    
+}
+#instructions ul::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+}
+#instructions ul::-webkit-scrollbar-track {
+    background: transparent;
+   
+}
+    
+#instructions ul::-webkit-scrollbar-thumb {
+    background-color:gainsboro;
+    border-radius: 1rem;
+}
+
+#instructions ul::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+    margin-bottom: 20px; 
+}
+
+#instructions ul::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+    margin-top: 20px;
+}
+#wish
+{
+
+display: flex;
+justify-content: center;
+  color: blue;
+  padding: 10px;
+    
+}
+#instructions ul {
+
+height: fit-content;
+padding: 10px;
+overflow: scroll;
+
+}
+#last{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: 10px;
+    align-items: center;
+}
+#head{
+    border-bottom: 0.1px solid gainsboro;
+    padding: 10px;
+}
+#instructions ul li{
+padding: 5px;
+color: grey;
+width: fit-content;
+list-style: square;
+
+margin-left: 1em;
+}
+
+
+#close{
+    display: block;
+    padding: 10px;
+   z-index: 5;
+   border-radius: 7px;
+   border: none;
+}
+#submit{
+    height: 300px;
+    width: 700px;
+    background-color: white;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2000;
+    padding: 10px;
+    border-radius: 1rem;
+   font-size: 1vw;
+}
+
+#submit p{
+    font-size: 1.5vw;
+    color: grey;
+    padding: 10px;
+
+}
+#submit input{
+    width: 50%;
+    border: 1px solid gray;
+    border-radius: 7px;
+    padding: 10px;
+    outline: 0;
+}
+#declares{
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    column-gap: 10px;
+    
+}
+.sbut{
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+}
+
+#bar{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+   
+}
+#bar::after{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: attr(data);
+    height: 140px;
+    width: 140px;
+    background-color: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+    
+}
+#main{
+padding:10px ;
+height: 500px;
+width: 600px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+background-color:white;
+border-radius: 1rem;
+z-index: 1000;
+color: black;
+box-shadow: inset 0 0 2px black;
+}
+#testins {
+    border-bottom: 1px solid grey;
+   padding: 15px;
+   color: grey;
+}
+
+#quest{
+    height: 100vh;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+  
+
+}
+.sect{
+margin: 10px;
+padding: 10px;
+border: none;
+background-color:rgba(237, 231, 225,0.1);
+color: white;
+border-radius: 7px;
+}
+.sect:hover{
+    background-color: skyblue;
+    color: white;
+}
+
+.display{
+   
+   width: 80%;
+   height: 400px;
+   border: 1px solid grey;
+   border-radius: 10px;
+   z-index: 1;
+   color: white;
+   
+}
+.display p{
+    font-size: 20px;
+    padding: 10px;
+   width: 50%;
+   height: 100%;
+   border-right: 1px solid gray;
+}
+#choices
+{
+    font-size: 25px;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+    z-index: 1;
+   
+}
+#choices label{
+    padding: 10px;
+    margin: 10px;
+    width: 75%;
+    background-color:rgba(237, 231, 225,0.1);
+    border: 1px solid grey;
+    border-radius: 7px;
+}
+#choices label:hover{
+    box-shadow: 0 0 10px 2px black;
+    transform: scale(1.02);
+}
+#choices input{
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+}
+
+.change:active{
+    transform: scale(1.08);
+}
+body{
+   
+    width: 100%;
+    background-image: url('./blue-smooth-textured-paper-background.jpg');
+
+   color: gray;
+}
+#wholebody{
+    height: 100%;
+
+    
+}
+#back{
+   
+
+    padding: 10px;
+    z-index: 1000;
+}
+#next{
+    
+   left: 10%;
+    bottom: 15%;
+    padding: 10px;
+    z-index: 1000;
+}
+#clear{
+    
+    left: 20%;
+     bottom: 15%;
+     padding: 10px;
+     z-index: 1000;
+}
+
+
+#score1{
+   
+    left: 25%;
+    bottom: 15%; 
+     padding: 10px;
+     z-index: 1000;
+}
+.change{
+    border: none;
+    border-radius: 7px;
+    background-color:rgba(237, 231, 225,0.1);
+    color: white;
+}
+#checkbox{
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    width: 100%;   
+ 
+  z-index: 1000;
+  
+  
+ 
+}
+.button{
+   width: fit-content;
+   position: relative;
+   left: 10%;
+    display: flex;
+    column-gap: 10px;
+    margin: 10px;
+    padding: 0;
+    font-size: small;
+   
+    
+
+}
+
+.checkboxes{
+    height: 30px;
+    width: 30px;
+    background-color:rgba(237, 231, 225,0.1);
+   color: white;
+    margin:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 7px;
+   
+}
+
+#questno{
+
+   width:fit-content;
+    font-size: 30px;
+    padding: 10px;
+}
+
+
+#navbar{
+    height: 50px;
+    width: 100%;
+    background-color:rgba(237, 231, 225,0.1);
+   
+    font-size: 20px;
+    position: relative;
+    color: white;
+}
+#topic{
+    position: absolute;
+    margin: 10px;
+}
+#score{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   height: 100vh;
+   font-size: 20px;
+   color: white;
+  position: relative;
+    
+}
+#score::after{
+    content: '';
+    background-image: url(./desk-2906792_1920.png);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+ bottom: 0px;
+opacity: 0.4;
+ z-index: -1;
+}
+#red{
+    color: red;
+   margin: 10px;padding: 10px;
+    font-size: 30px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: lightcyan;
+    box-shadow: inset 0  0 5px  black;
+    width: 50px;
+    text-align: center;
+}
+#green{
+    color: green;
+    margin: 10px;
+    padding: 10px;
+    font-size: 30px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: lightcyan;
+    box-shadow: inset 0  0 5px  black;
+    width: 50px;
+    text-align: center;
+}
+i{
+    margin: 10px;
+    font-size: 40px;
+   
+}
+#timer{
+position: absolute;
+right: 0;
+margin: 15px;
+}
+@media only screen and (max-width: 700px) {
+    
+    #another{
+        display: block;
+        
+       width: 100vw;
+       padding: 10px;
+    }
+    
+  #wholebody{
+    height: 100%;
+  }
+ 
+    #quest{
+        
+        position: relative;
+        padding: 10px;
+    }
+    .display{
+     
+        position: absolute;
+        width: 80%;
+        height: 400px;
+        border-radius: 10px;
+        z-index: 1;
+        
+
+     }
+    .display p{
+        width: 100%;
+        height: fit-content;
+        border-right: none;
+        font-size: 3.2vw;
+        left: 50%;
+       border-bottom: 1px solid grey;
+    
+        
+    }
+    #choices input{
+        height: 10px;
+        width: 10px;
+        margin: 10px;
+    }
+    #choices{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        height: fit-content;
+    }
+    #choices label{
+        width: 100%;
+        font-size:3.2vw;
+        padding: 5px;
+        margin: 0;
+        margin-top: 10px;
+    }
+ 
+    
+
+#questno{
+top: 25%;
+left: 70%;
+font-size: 40px;
+
+}
+#score{
+    font-size: 15px;
+}
+.sect{
+    display: block;
+}
+#main{
+    height: 50%;
+    width: 50%;
+    font-size:10px;
+}
+#bar{
+    height: 80px;
+    width: 80px;
+}
+#bar::after{
+    height: 70px;
+    width: 70px;
+    font-size: 20px;
+}
+#instructions{
+   height: 400px;
+    width: 70%;
+   font-size: 2vw;
+   padding:20px;
+   
+   
+}
+#instructions ul {
+  
+    font-size: 2.5vw;
+   
+    
+
+}
+#instructions h2{
+    font-size: 3vw;
+}
+#wish{
+    font-size: 3vw;
+}
+#close{
+    padding: 10px;
+}
+#submit{
+    padding: 20px;
+    height: 70%;
+    width: 70%;
+    font-size: 3vw;
+}
+#submit p{
+    font-size: 4vw;
+}
+#tabswitch{
+    height: 70%;
+    width: 70%;
+    font-size: 3vw;
+
+}
+  
+  }

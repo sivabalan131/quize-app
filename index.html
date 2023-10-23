@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quize</title>
+    <link rel="stylesheet" href="quize1.css">
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wholebody">
+        <nav id="navbar">
+            <h1 id="topic">its quize</h1>
+            <div id="timer"></div>
+        </nav>
+        <div id="instructions">
+            <h2 style="color: red;" id="head">Read the instructions carefully</h2>
+        
+            <ul>
+                <li>Finish the test on given time</li>
+               
+                <li>The marked questions will be displayed on Green color</li>
+                <li>The Submit button will be enabled at last questions</li>
+                <li>There is no negative marks provided</li>
+                <li>In case of any issues please contact the admin</li>
+              
+                <div id="last">
+           
+                    <button onclick="closed()" id="close">close</button>
+                  </div>
+            </ul>
+            
+            <h2 id="wish">-All the best-</h2>
+           
+            
+        </div>
+        <div id="main">
+            <h1 id="testins">The test starts in few seconds...</h1>
+
+            <div id="circular">
+                <div id="bar">
+                    <div id="inner"></div>
+                </div>
+            </div>
+        </div>
+        <div id="submit">
+            <h1 id="tabtopic">Confirm Submit</h1>
+            <p>Check your answers before submiting</p>
+            <p>Check all the questions are answered</p>
+            <p>Type <span style="color: red;">"end"</span> in below box</p>
+            <input type="text" id="fill" value="" >
+            <div id="declares">
+            <button onclick="closingsubmit()" class="sbut">close</button>
+            <button onclick="onscore()" id="submitbutton" class="sbut">Submit</button>
+            </div>
+        </div>
+
+
+        <div id="sections">
+            <button onclick="aptitude()" id="apti" class="sect">Aptitude</button>
+            <button onclick="reasoning()" id="reasoning" class="sect">Reasoning</button>
+            <button onclick="verbal()" id="verbal" class="sect">Verbal</button>
+            <button onclick="logical()" class="sect">Logical Reasoning</button>
+        </div>
+        <div id="checkbox"></div>
+
+        <div id="container">
+            <div id="questno">
+
+            </div>
+
+            <div id="ans">
+
+            </div>
+            <div class="button">
+
+                <button onclick="nextquest()" id="next" class="change">next</button>
+                <button onclick="backquestion()" id="back" class="change">back</button>
+                <button onclick="onclear()" id="clear" class="change">Clear</button>
+                <button onclick="oncecheck()" id="score1" class="change" style="display: none;">Score</button>
+            </div>
+            <div id="quest">
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <script>
+        const Questions = [{
+            question: "In what decade was Madonna born?",
+            option: [
+                { text: "1950s", isCorrect: "true" },
+                { text: "1960s", isCorrect: "false" },
+                { text: "1970s", isCorrect: "false" }
+            ]
+        }, {
+            question: "In which year was Slido founded?",
+            option: [
+                { text: "2012", isCorrect: "true" },
+                { text: "2016", isCorrect: "false" },
+                { text: "2020", isCorrect: "false" }
+            ]
+        },
+
+        {
+            question: "Who is credited with inventing the World Wide Web?",
+            option: [
+                { text: "Steve Jobs", isCorrect: "false" },
+                { text: "Bill Gates", isCorrect: "false" },
+                { text: "Tim Berners-Lee", isCorrect: "true" }
+            ]
+        },
+
+        {
+            question: "What type of computer was the first laptop computer?",
+            option: [
+                { text: "Apple Macintosh", isCorrect: "false" },
+                { text: "IBM PC", isCorrect: "false" },
+                { text: "Osborne 1", isCorrect: "true" }
+            ]
+        },
+        {
+            question: "Who painted The Last Supper?",
+            option: [
+                { text: "Leonardo Da Vinci", isCorrect: "true" },
+                { text: "Rembrandt", isCorrect: "false" },
+                { text: "Michelangelo", isCorrect: "false" }
+            ]
+        }, {
+            question: "In what year did the Titanic sink?",
+            option: [
+                { text: "1900", isCorrect: "false" },
+                { text: "1912", isCorrect: "true" },
+                { text: "1921", isCorrect: "false" }
+            ]
+        },
+
+        {
+            question: "Until 1981, Greenland was a colony of which country?",
+            option: [
+                { text: "France", isCorrect: "false" },
+                { text: "Spain", isCorrect: "false" },
+                { text: "Denmark", isCorrect: "true" }
+            ]
+        },
+
+        {
+            question: "How many US presidents have been assassinated?",
+            option: [
+                { text: "Three", isCorrect: "false" },
+                { text: "Four", isCorrect: "true" },
+                { text: "Five", isCorrect: "false" }
+            ]
+        },
+
+        {
+            question: "What is the modern name for the island formerly known as Van Diemen’s Land?",
+            option: [
+                { text: "The Isle of Wight", isCorrect: "false" },
+                { text: "Tasmania", isCorrect: "true" },
+                { text: "Hawaii", isCorrect: "false" }
+            ]
+        }
+            ,
+        {
+            question: "Who was assassinated in New York in 1980?",
+            option: [
+                { text: "President John F Kennedy", isCorrect: "false" },
+                { text: "John Lennon", isCorrect: "true" },
+                { text: "Gianni Versace", isCorrect: "false" }
+            ]
+        }, {
+            question: "Who wrote the epic poem Paradise Lost?",
+            option: [
+                { text: "Williams Shakespeare", isCorrect: "false" },
+                { text: "John Milton", isCorrect: "true" },
+                { text: "Mary Shelley", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "How many original James Bond novels were published?",
+            option: [
+                { text: "12", isCorrect: "true" },
+                { text: "15", isCorrect: "false" },
+                { text: "21", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "“Magnum opus” is a Latin phrase for what in literature?",
+            option: [
+                { text: "A love story", isCorrect: "false" },
+                { text: "An author’s best work", isCorrect: "true" },
+                { text: "A tragedy", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "Who wrote Lolita?",
+            option: [
+                { text: "Anton Chekov", isCorrect: "false" },
+                { text: "Leo Tolstoy", isCorrect: "false" },
+                { text: "Vladimir Nabokov", isCorrect: "true" }
+            ]
+        },
+        {
+            question: "What was the bestselling book in the US in 2022?",
+            option: [
+                { text: "It Ends With Us by Colleen Hoover", isCorrect: "true" },
+                { text: "Where the Crawdads Sing by Delia Owens", isCorrect: "false" },
+                { text: "The Light We Carry by Michelle Obama", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "How many novels did Roald Dahl write?",
+            option: [
+                { text: "Seven", isCorrect: "false" },
+                { text: "11", isCorrect: "false" },
+                { text: "19", isCorrect: "true" }
+            ]
+        },
+        {
+            question: "Where is Emily Bronte’s novel Wuthering Heights set?",
+            option: [
+                { text: "Yorkshire", isCorrect: "true" },
+                { text: "London", isCorrect: "false" },
+                { text: "Paris", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "Which author is the bestselling female author of all time, having sold two billion books?",
+            option: [
+                { text: "JK Rowling", isCorrect: "false" },
+                { text: "Agatha Christie", isCorrect: "true" },
+                { text: "Enid Blyton", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "What was the first book ever ordered on Amazon?",
+            option: [
+                { text: "Don Quixote", isCorrect: "false" },
+                { text: "The Bible", isCorrect: "false" },
+                { text: "Fluid Concepts and Creative Analogies: Computer Models of the Fundamental Mechanisms of Thought", isCorrect: "true" }
+            ]
+        },
+        {
+            question: "Who is the female protagonist in The Hunger Games?",
+            option: [
+                { text: "Hermione Granger", isCorrect: "false" },
+                { text: "Nancy Drew", isCorrect: "false" },
+                { text: "Katniss Everdeen", isCorrect: "true" }
+            ]
+        },
+        {
+            question: "In what country was the Caesar salad invented?",
+            option: [
+                { text: "The US", isCorrect: "false" },
+                { text: "Poland", isCorrect: "false" },
+                { text: "Mexico", isCorrect: "true" }
+            ]
+        },
+        {
+            question: "What was the first fruit to be eaten on the Moon?",
+            option: [
+                { text: "Grapes", isCorrect: "false" },
+                { text: "A peach", isCorrect: "true" },
+                { text: "A starfruit", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "What is the primary ingredient in hummus?",
+            option: [
+                { text: "Black beans", isCorrect: "false" },
+                { text: "Edemame beans", isCorrect: "false" },
+                { text: "Chickpeas", isCorrect: "true" }
+            ]
+        },
+        {
+            question: "In which Italian city was pizza first made?",
+            option: [
+                { text: "Naples", isCorrect: "true" },
+                { text: "Rome", isCorrect: "false" },
+                { text: "Palermo", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "What are the top two most exported spices used in the world?",
+            option: [
+                { text: "Pepper and mustard", isCorrect: "false" },
+                { text: "Ginger and cinnamon", isCorrect: "true" },
+                { text: "Mustard and oregano", isCorrect: "false" }
+            ]
+        }, {
+            question: "What is the capital of France?",
+            option: [
+                { text: "Berlin", isCorrect: "false" },
+                { text: "Paris", isCorrect: "true" },
+                { text: "Rome", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "What is the largest planet in our solar system?",
+            option: [
+                { text: "Earth", isCorrect: "false" },
+                { text: "Jupiter", isCorrect: "true" },
+                { text: "Mars", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "Which planet is known as the Red Planet?",
+            option: [
+                { text: "Venus", isCorrect: "false" },
+                { text: "Mars", isCorrect: "true" },
+                { text: "Jupiter", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "Who is known as the father of modern physics?",
+            option: [
+                { text: "Isaac Newton", isCorrect: "false" },
+                { text: "Galileo Galilei", isCorrect: "false" },
+                { text: "Albert Einstein", isCorrect: "true" }
+            ]
+        },
+        {
+            question: "What is the currency of Japan?",
+            option: [
+                { text: "Yuan", isCorrect: "false" },
+                { text: "Yen", isCorrect: "true" },
+                { text: "Euro", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "Which country is known as the Land of the Rising Sun?",
+            option: [
+                { text: "China", isCorrect: "false" },
+                { text: "Japan", isCorrect: "true" },
+                { text: "Korea", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "Which scientist discovered the theory of general relativity?",
+            option: [
+                { text: "Isaac Newton", isCorrect: "false" },
+                { text: "Galileo Galilei", isCorrect: "false" },
+                { text: "Albert Einstein", isCorrect: "true" }
+            ]
+        },
+        {
+            question: "What is the largest mammal in the world?",
+            option: [
+                { text: "Elephant", isCorrect: "true" },
+                { text: "Blue Whale", isCorrect: "false" },
+                { text: "Giraffe", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "Which country is known as the Land of the Thunder Dragon?",
+            option: [
+                { text: "Bhutan", isCorrect: "true" },
+                { text: "Nepal", isCorrect: "false" },
+                { text: "Tibet", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "What is the smallest country in the world?",
+            option: [
+                { text: "Monaco", isCorrect: "false" },
+                { text: "Vatican City", isCorrect: "true" },
+                { text: "San Marino", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "What is the chemical symbol for the element oxygen?",
+            option: [
+                { text: "O", isCorrect: "true" },
+                { text: "Ox", isCorrect: "false" },
+                { text: "Om", isCorrect: "false" }
+            ]
+        },
+        {
+            question: "Which natural disaster is measured with a Richter scale?",
+            option: [
+                { text: "Tornado", isCorrect: "false" },
+                { text: "Hurricane", isCorrect: "false" },
+                { text: "Earthquake", isCorrect: "true" }
+            ]
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        ]
+        console.log(Questions.length)
+        var currques = 0;
+        var score = 0;
+        var check = document.getElementById('checkbox')
+        var num = 0;
+        var prev = 0;
+        var idn = 0;
+        let arr = [];
+        var num = document.getElementById('questno')
+        num.innerHTML = `${currques + 1}/${Questions.length}`
+        for (var i = 0; i <= Questions.length - 1; i++) {
+
+
+            var ques = document.getElementById('quest');
+            var quest = document.createElement('div')
+            var choice1 = document.createElement('div')
+            choice1.setAttribute('id', 'choices')
+            quest.setAttribute('id', `question${i}`)
+            quest.classList.add(`${i}`, 'display')
+            quest.innerHTML = `<p>${Questions[i].question}</p>`;
+            ques.append(quest)
+            quest.append(choice1)
+            for (var k = 0; k < Questions[i].option.length; k++) {
+
+                var label1 = document.createElement('label')
+                var inputs = document.createElement('input')
+                inputs.type = "radio"
+                inputs.name = `question${i}`
+                inputs.value = i;
+                label1.setAttribute('id', 'labels')
+                label1.setAttribute('class', `labels${i}`)
+                inputs.id = "input" + idn;
+                inputs.setAttribute('class', 'displays' + i)
+                inputs.classList.add('display' + i, 'displayss', k)
+                var texts = Questions[i].option[k].text
+                label1.append(inputs)
+                label1.append(texts)
+                choice1.append(label1)
+                quest.appendChild(choice1)
+                idn = idn + 1;
+            }
+        }
+
+        var checkbox = document.getElementById('checkbox')
+
+        for (var i = 0; i < Questions.length; i++) {
+            var checkboxcircle = document.createElement('div')
+            checkboxcircle.setAttribute('class', `checkboxes`)
+            checkboxcircle.setAttribute('id', 'checkboxe' + i)
+            checkbox.append(checkboxcircle)
+            checkboxcircle.innerHTML = i + 1;
+        }
+
+
+        if (currques == 0) {
+            showfun(currques)
+
+            document.getElementById('back').disabled = true
+        }
+        function showfun(currques) {
+            var questions1 = document.querySelectorAll('.display')
+            questions1.forEach((question, i) => {
+                if (i == currques) {
+                    question.style.display = "flex";
+
+                }
+                else {
+                    question.style.display = "none";
+                }
+            })
+
+            disableback(currques)
+
+
+            disablenext(currques)
+
+
+        }
+
+
+        function green(currques) {
+            var k = 0;
+            var inputs = document.querySelectorAll(`.displays${prev}`)
+
+
+            inputs.forEach((input, i) => {
+
+                if (input.checked) {
+                    document.getElementById(`checkboxe${prev}`).style.backgroundColor = "green"
+
+                    k = 1;
+
+
+                }
+
+                else if (k == 0) {
+                    console.log("red", i)
+                    document.getElementById(`checkboxe${prev}`).style.backgroundColor = "red"
+
+                }
+
+
+
+
+            })
+            prev = currques;
+
+        }
+
+        function bgreen(currques) {
+            var k = 0;
+            var inputs = document.querySelectorAll(`.displays${prev}`)
+            inputs.forEach((input, i) => {
+
+
+
+                if (input.checked) {
+
+
+
+                    document.getElementById(`checkboxe${prev}`).style.backgroundColor = "green"
+                    k = 1;
+                    document.getElementById('')
+
+
+                }
+                else if (k == 0) {
+                    document.getElementById(`checkboxe${prev}`).style.backgroundColor = "red"
+                }
+
+
+
+
+            })
+            prev = currques
+        }
+
+        var checkboxez = document.querySelectorAll('.displayss')
+        checkboxez.forEach((checkboxe, i) => {
+
+            checkboxe.addEventListener("change", function (event) {
+
+                var ids = document.getElementById(event.target.id)
+                if (ids.checked) {
+
+
+                    document.querySelectorAll('.checkboxes').forEach((checkbox, k) => {
+                        if (event.target.value == k) {
+                            checkbox.style.backgroundColor = "green"
+                            oncorrect(ids.classList[3])
+
+
+
+                        }
+                    })
+                }
+
+
+
+            })
+        })
+
+
+        function label(currques) {
+            var res = 0;
+            labels = document.querySelectorAll(`.labels${currques}`)
+            console.log(labels)
+            labels.forEach((label, i) => {
+                label.addEventListener("click", function (event) {
+                    labels.forEach(lab => {
+                        if (label == lab) {
+                            lab.style.backgroundColor = "rgb(255, 255, 255,0.8)"
+                            lab.style.color = "black"
+
+                        }
+                        else {
+                            lab.style.backgroundColor = null
+                            lab.style.color = "white"
+                        }
+                    })
+
+                })
+
+            })
+        }
+        label(currques)
+
+
+
+
+
+
+
+
+        function nextquest() {
+
+            currques++
+            console.log(currques)
+            for (var i = 0; i < Questions.length; i++) {
+
+                if (i == currques) {
+                    document.getElementById(`question${currques}`).style.display = "flex";
+                }
+                else {
+                    document.getElementById(`question${i}`).style.display = "none";
+                }
+            }
+            label(currques)
+            disablenext(currques)
+            showcolor(currques)
+            green(currques)
+            questno(currques)
+
+
+        }
+        function questno(currques) {
+            var num = document.getElementById('questno')
+            num.innerHTML = `${currques + 1}/${Questions.length}`
+            var scores = document.getElementById('score1')
+            if (currques == Questions.length - 1) {
+                scores.style.display = "block";
+            }
+            else {
+                scores.style.display = "none";
+            }
+        }
+        function backquestion() {
+
+            currques--
+
+            for (var i = 0; i < Questions.length; i++) {
+
+                if (i == currques) {
+                    document.getElementById(`question${currques}`).style.display = "flex";
+                }
+                else {
+                    document.getElementById(`question${i}`).style.display = "none";
+                }
+            }
+            label(currques)
+            disableback(currques)
+            showcolor(currques)
+            bgreen(currques)
+            questno(currques)
+
+        }
+
+        var changec = 0
+        var scr;
+        function onclear() {
+            var checkboxes = document.querySelectorAll(".displays" + currques)
+            checkboxes.forEach((checkbox, i) => {
+                if (checkbox.checked) {
+                    checkbox.checked = false;
+                    document.getElementById(`checkboxe${currques}`).style.backgroundColor = "red"
+                    scr = checkbox.classList[3]
+                }
+                var labels = document.querySelectorAll(`.labels${currques}`)
+                labels.forEach((label, i) => {
+                    label.style.backgroundColor = null;
+                    label.style.color = "white"
+                })
+            })
+            reducemark(scr)
+
+        }
+        function reducemark(i) {
+            if (Questions[currques].option[i].isCorrect === 'true') {
+
+                if (score <= Questions.length - 1)
+                    score--;
+
+
+                document.getElementById('totscore').innerHTML = score
+
+            }
+        }
+
+
+        const checkclick = document.querySelectorAll('.checkboxes')
+        checkclick.forEach((element, i) => {
+            element.addEventListener("click", function displayquest(event) {
+                currques = i
+                showfun(i)
+                showcolor(i)
+                green(i)
+                label(i)
+                questno(i)
+
+            })
+
+        })
+        if (currques == 0) {
+            document.getElementById(`checkboxe0`).style.backgroundColor = "skyblue"
+        }
+        function showcolor(currques) {
+            var questions1 = document.querySelectorAll('.checkboxes')
+            questions1.forEach((question, i) => {
+                if (i == currques) {
+                    question.style.backgroundColor = "skyblue";
+
+
+                }
+
+                else if (question.style.backgroundColor != "green" && question.style.backgroundColor != "red") {
+                    question.style.backgroundColor = null;
+                }
+
+
+            })
+
+        }
+
+
+        function disableback(currques) {
+
+            if (currques <= 0) {
+                document.getElementById('back').disabled = true
+
+            }
+            document.getElementById('next').disabled = false
+        }
+        function disablenext(currques) {
+
+            if (currques >= Questions.length - 1) {
+                document.getElementById('next').disabled = true
+            }
+            if (currques != 0) {
+                document.getElementById('back').disabled = false
+            }
+        }
+
+        function oncorrect(i) {
+
+
+            if (Questions[currques].option[i].isCorrect === 'true') {
+
+                if (score <= Questions.length - 1)
+                    score++;
+
+
+                document.getElementById('totscore').innerHTML = score
+
+            }
+
+
+
+
+        }
+
+        function onscore() {
+            document.getElementById('submit').remove()
+            document.getElementById('timer').remove()
+            document.getElementById('sections').remove()
+            document.getElementById("container").remove()
+            document.getElementById("checkbox").remove()
+            var score1 = document.createElement('div')
+            score1.setAttribute('id', 'score')
+            document.body.appendChild(score1)
+            if (score > currques / 2) {
+
+                document.getElementById('score').innerHTML = `Your done <span id="green">${score}</span> marks  <i class="em em-clap" aria-role="presentation" aria-label="CLAPPING HANDS SIGN"></i>`;
+            }
+            else {
+                document.getElementById('score').innerHTML = `You need to improve <span id="red">${score}</span> marks <i class="em em-cry" aria-role="presentation" aria-label="CRYING FACE"></i>`;
+            }
+        }
+        const targetDate = new Date();
+        targetDate.setMinutes(targetDate.getMinutes() + 35);
+        const targetTime = targetDate.getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = targetDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            document.querySelector("#timer").innerHTML = hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+
+                onscore()
+
+            }
+        }, 1000);
+        function hide(currques) {
+            for (var i = 0; i <= currques; i++) {
+                var check = document.getElementById(`checkboxe${i}`)
+                check.style.pointerEvents = "none"
+                check.style.opacity = "0.4"
+
+            }
+        }
+        function aptitude() {
+            currques = -1;
+            nextquest()
+        }
+        function reasoning() {
+            document.getElementById('apti').disabled = true;
+            currques = 14;
+            hide(currques)
+            nextquest()
+        }
+        function verbal() {
+            document.getElementById('apti').disabled = true;
+            document.getElementById('reasoning').disabled = true;
+            currques = 19;
+            hide(currques)
+            nextquest()
+        }
+        function logical() {
+            document.getElementById('apti').disabled = true;
+            document.getElementById('reasoning').disabled = true;
+            document.getElementById('verbal').disabled = true;
+            currques = 24;
+            hide(currques)
+            nextquest()
+        }
+        var progress = document.getElementById("bar")
+        progress.style.background = `conic-gradient(rgb(47,61,126) ${increase}deg,rgb(250,234,235) 0deg)`
+        var increase = 360;
+        var seconds = 5;
+        var totprogress = 360 / seconds;
+        document.body.style.pointerEvents = "none"
+        document.getElementById('wholebody').style.backgroundColor = "rgba(0, 0, 0,0.6)"
+
+        setInterval(() => {
+            increase -= totprogress;
+            seconds -= 1;
+
+            if (seconds == 0) {
+                seconds = 1;
+                document.getElementById('main').style.display = "none";
+              
+                document.getElementById('instructions').style.pointerEvents="all";
+
+            }
+            progress.style.background = `conic-gradient(rgb(47,61,126) ${increase}deg,rgb(250,234,235) 0deg)`
+            // const beforeContent = window.getComputedStyle(bar, 'after').getPropertyValue('content');
+            progress.setAttribute('data', `${seconds}%`)
+
+
+        }, 1000)
+        
+        function closed() {
+            document.body.style.pointerEvents = "all"
+            
+            document.getElementById('instructions').style.display = "none"
+           
+                document.getElementById('wholebody').style.backgroundColor = null
+                var tabs=document.createElement('div')
+            tabs.setAttribute('id','tabswitch')
+            document.body.appendChild(tabs)
+            document.getElementById('tabswitch').style.display="none";
+
+        }
+        function oncecheck()
+        {
+           
+            document.getElementById('submit').style.display="block"
+        }
+        document.body.addEventListener("dblclick",function(){
+            if(document.getElementById('submit').style.display==="block")
+            {
+            document.getElementById('submit').style.display="none"
+            }
+        })
+        document.getElementById('submitbutton').disabled=true
+        var i=0;
+        setInterval(checkinput,100)
+        function checkinput()
+        {
+            
+            if(document.getElementById('fill').value=="end")
+            {
+                document.getElementById('submitbutton').disabled=false
+            }
+            else{
+                document.getElementById('submitbutton').disabled=true
+            }
+        }
+        
+        var tabswitch=0;
+       
+      document.addEventListener("visibilitychange",()=>{
+       
+        
+        if(document.visibilityState!="visible"){
+            document.getElementById('tabswitch').style.display="flex"
+            tabswitch+=1;
+            document.getElementById('tabswitch').innerHTML=`<h3 id="tabtopic">Your not allowed to switch tabs</h3><p>Warning! Dont switch tabs</p><h3 id="warning">Tab switch count-${tabswitch}</h3><div id="tabbutton"><button id="tabclose" onclick="closingtab()">close</button></div>`       
+      if(tabswitch==100)
+      {
+        document.getElementById('tabswitch').remove()
+        onscore()
+      }
+         
+        }
+        
+       
+    
+      })
+      function closingtab()
+      {
+        document.getElementById('tabswitch').style.display="none"
+      }
+      function closingsubmit()
+      {
+        document.getElementById('submit').style.display="none"
+      }
+    
+    </script>
+</body>
+
+</html>
